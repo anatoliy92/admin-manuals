@@ -28,9 +28,9 @@ class AdminManualsServiceProvider extends AuthServiceProvider
 			$this->registerPolicies();
 			// dd('manuals');
 				// Публикуем файл конфигурации
-				$this->publishes([
-						__DIR__ . '/../config/adminmanuals.php' => config_path('adminmanuals.php'),
-				]);
+				// $this->publishes([
+				// 		__DIR__ . '/../config/adminmanuals.php' => config_path('adminmanuals.php'),
+				// ]);
 
 				$this->publishes([
 						__DIR__ . '/../public' => public_path('vendor/adminmanuals'),

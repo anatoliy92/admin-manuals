@@ -13,10 +13,17 @@
 					<ul class="list-group">
 
 						<li class="list-group-item p-1 pl-3" v-for="(element, index) in elements">
-							<label>@[[ element.title ]]@</label>
-							<div class="btn-group btn-group-sm pull-right" role="group" aria-label="First group">
-							<button class="btn btn-success" type="button" v-on:click="change(index)"><i class="fa fa-pencil"></i></button>
-							<button class="btn btn-danger" type="button" v-on:click="deleteManuals(index)"><i class="fa fa-trash"></i></button>
+							<div class="row">
+								<div class="col-5">@[[ element.title ]]@</div>
+								<div class="col-5">
+									<a :href="'/manuals/' + element.id + '/lists'" target="_blank">/manuals/@[[ element.id ]]@/lists</a>
+								</div>
+								<div class="col-2">
+									<div class="btn-group btn-group-sm pull-right" role="group" aria-label="First group">
+										<button class="btn btn-success" type="button" v-on:click="change(index)"><i class="fa fa-pencil"></i></button>
+										<button class="btn btn-danger" type="button" v-on:click="deleteManuals(index)"><i class="fa fa-trash"></i></button>
+									</div>
+								</div>
 							</div>
 						</li>
 
@@ -42,6 +49,5 @@
 
 @section('js')
 	<script src="{{ asset('avl/js/vue.min.js') }}" charset="utf-8"></script>
-	<script src="{{ asset('avl/js/modules/manuals-menu.js') }}" charset="utf-8"></script>
-	<!-- <script src="{{ asset('vendor/adminpage/js/page.js') }}" charset="utf-8"></script> -->
+	<script src="{{ asset('vendor/adminmanuals/js/manuals-menu.js') }}" charset="utf-8"></script>
 @endsection

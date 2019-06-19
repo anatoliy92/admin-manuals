@@ -4,11 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\ModelTrait;
 use LaravelLocalization;
 
-class Manuals extends Model
+class ManualsData extends Model
 {
 		use ModelTrait;
 
-		protected $table = 'manuals';
+		protected $table = 'manuals_data';
 
 		protected $modelName = __CLASS__;
 
@@ -18,15 +18,4 @@ class Manuals extends Model
 		{
 			$this->lang = LaravelLocalization::getCurrentLocale();
 		}
-
- 		public function childrens()
- 		{
- 			return $this->hasMany('Avl\AdminManuals\Models\Manuals', 'parent_id');
- 		}
-
- 		public function manual_data_childrens()
- 		{
- 			return $this->hasMany('Avl\AdminManuals\Models\ManualsData', 'manual_id');
- 		}
-
 }

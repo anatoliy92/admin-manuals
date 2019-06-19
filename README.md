@@ -1,20 +1,20 @@
-# admin-page
+# admin-manuals
 
 ### Информация
 
-Страничный модуль заточенный для CMS IRsite.
+Справочный модуль заточенный для CMS IRsite.
 
 ### Установка
 
 ```
-$ composer require avl/admin-page
+$ composer require avl/admin-manuals
 ```
-Или в секцию **require** добавить строчку **"avl/admin-page": "^1.0"**
+Или в секцию **require** добавить строчку **"avl/admin-manuals": "^1.0"**
 
 ```json
 {
     "require": {
-        "avl/admin-page": "^1.0"
+        "avl/admin-manuals": "^1.0"
     }
 }
 ```
@@ -23,5 +23,5 @@ $ composer require avl/admin-page
 Для публикации файла настроек необходимо выполнить команду:
 
 ```
-$ php artisan vendor:publish --provider="Avl\AdminPage\AdminPageServiceProvider" --force
+$ php artisan vendor:publish --provider="Avl\AdminManuals\AdminManualsServiceProvider" --force
 ```

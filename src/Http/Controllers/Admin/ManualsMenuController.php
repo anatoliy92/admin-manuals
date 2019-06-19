@@ -25,8 +25,7 @@ class ManualsMenuController extends AvlController
 	}
 
 	/**
-	 * Страница вывода списка новостей к определенному новостному разделу
-	 * @param  int  $id      номер раздела
+	 * Страница вывода пунктов меню справочника
 	 * @param  Request $request
 	 * @return \Illuminate\Http\Response
 	 */
@@ -42,7 +41,7 @@ class ManualsMenuController extends AvlController
 	/**
 	 * Метод для обновления определенной записи
 	 * @param  Request $request
-	 * @param  int  $id      Номер раздела
+	 * @param  int  $id      Номер пункта если NULL то идет создание если не NULL то обновление пункта
 	 * @return redirect to index method
 	 */
 	public function update($id = null, Request $request)
@@ -61,7 +60,7 @@ class ManualsMenuController extends AvlController
 	}
 
 	/**
-	 * Удаление записи и всех медиа файлов
+	 * Удаление записи
 	 * @param  int $id      Номер пункта
 	 * @return json
 	 */

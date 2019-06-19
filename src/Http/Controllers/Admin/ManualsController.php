@@ -1,6 +1,6 @@
 <?php namespace Avl\AdminManuals\Controllers\Admin;
 
-use App\Http\Controllers\Avl\AvlController;
+	use App\Http\Controllers\Avl\AvlController;
 	use Avl\AdminManuals\Models\Manuals;
 	use Illuminate\Http\Request;
 	use App\Models\Menu;
@@ -19,8 +19,8 @@ class ManualsController extends AvlController
 	}
 
 	/**
-	 * Страница вывода списка новостей к определенному новостному разделу
-	 * @param  int  $id      номер раздела
+	 * Страница вывода подпунктов меню
+	 * @param  int  $id      номер пункта меню
 	 * @param  Request $request
 	 * @return \Illuminate\Http\Response
 	 */
@@ -34,9 +34,10 @@ class ManualsController extends AvlController
 	}
 
 	/**
-	 * Метод для обновления определенной записи
+	 * Метод для обновления или добавления пункта меню
 	 * @param  Request $request
-	 * @param  int  $id      Номер раздела
+	 * @param  int  $id      Номер пункта меню
+	 * @param  int  $list_id      Номер подпункта меню
 	 * @return redirect to index method
 	 */
 	public function update($id, $list_id, Request $request)
@@ -57,8 +58,9 @@ class ManualsController extends AvlController
 	}
 
 	/**
-	 * Удаление записи  файлов
-	 * @param  int $id      Номер раздела
+	 * Удаление пунктов
+	 * @param  int  $id      Номер пункта меню
+	 * @param  int  $list_id      Номер подпункта меню
 	 * @return json
 	 */
 	public function destroy($id, $list_id, Request $request)
@@ -66,6 +68,10 @@ class ManualsController extends AvlController
 		$this->authorize('delete', $this->accessModel);
 
 		$manual = Manuals::findOrFail($list_id);
+
+		if ($manual->manual_data_childrens) {
+				$manual->manual_data_childrens()->delete();
+		}
 
 		if ($manual->delete()) {
 			return ['success' => ['Пункт удален!']];

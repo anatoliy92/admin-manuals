@@ -1,17 +1,14 @@
 <?php
 use Avl\AdminManuals\Models\Manuals;
 
-if (!function_exists('getManualsChildrenByAlias')) {
-    function getManualsChildrenByAlias($alias)
+if (!function_exists('getManualItems')) {
+    function getManualItems($alias)
     {
 			$manuals = Manuals::whereAlias($alias)->first();
-			if (is_null($manuals)) {
-				$manuals = null;
-				return $manuals;
-			}else{
+			if (!is_null($manuals)) {
 				$manuals = $manuals->manual_data_childrens()->get();
-				return $manuals;
 			}
+			return $manuals ?? null;
     }
 }
 

@@ -54,6 +54,18 @@ class AdminManualsServiceProvider extends AuthServiceProvider
 				// migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
+				$this->loadHelpers();
+
+		}
+
+			/**
+		 * Load helpers.
+		 */
+		protected function loadHelpers()
+		{
+				foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+						require_once $filename;
+				}
 		}
 
 }

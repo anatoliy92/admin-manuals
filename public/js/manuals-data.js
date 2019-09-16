@@ -113,6 +113,13 @@ $(document).ready(function () {
 								}
 							}
 					});
+				},
+
+				cancel: function () {
+					this.createOrUpdate.id = 0;
+					this.createOrUpdate.title_ru = '';
+					this.createOrUpdate.title_en = '';
+					this.createOrUpdate.title_kz = '';
 				}
 
 			},

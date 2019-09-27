@@ -3,7 +3,7 @@
 @section('main')
 	<div class="card">
 		<div class="card-header">
-			<i class="fa fa-align-justify"></i> Manuals-menu
+			<i class="fa fa-align-justify"></i> Меню справочников
 		</div>
 
 		<div class="card-body" id="manuals-menu">
@@ -16,7 +16,7 @@
 							<div class="row">
 								<div class="col-5">@[[ element.title ]]@</div>
 								<div class="col-5">
-									<a :href="'/manuals/' + element.id + '/lists'" target="_blank">/manuals/@[[ element.id ]]@/lists</a>
+									<a :href="'/manuals/' + element.id + '/lists'">/manuals/@[[ element.id ]]@/lists</a>
 								</div>
 								<div class="col-2">
 									<div class="btn-group btn-group-sm pull-right" role="group" aria-label="First group">
@@ -42,7 +42,7 @@
 		</div>
 
 		<div class="card-footer position-relative">
-			<i class="fa fa-align-justify"></i> Manuals-menu
+			<i class="fa fa-align-justify"></i> Меню справочников
 		</div>
 	</div>
 @endsection

@@ -16,14 +16,14 @@
 					<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th width="50" class="text-center">ID</th>
+							<th width="50" class="text-center">#</th>
 							<th v-for="(lang, index) in langs">@[[  lang.name ]]@</th>
 							<th class="text-center" style="width: 100px;">Действие</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="position-relative" v-for="(element, index) in elements">
-							<td>@[[ element['id'] ]]@</td>
+							<td>@[[ index + 1 ]]@</td>
 							<td v-for="(lang, index) in langs"> @[[ element['title_' + lang.key] ]]@ </td>
 							<td>
 								<div class="btn-group btn-group-sm pull-right" role="group" aria-label="First group">
@@ -33,7 +33,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>#</td>
+							<td class="text-center">#</td>
 							<td v-for="(lang, index) in langs">
 								<input type="text" class="form-control" v-model="createOrUpdate['title_' + lang.key]" placeholder="Имя пункта">
 							</td>

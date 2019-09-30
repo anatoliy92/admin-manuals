@@ -3,7 +3,7 @@
 	use App\Http\Controllers\Avl\AvlController;
 	use Avl\AdminManuals\Models\Manuals;
 	use Illuminate\Http\Request;
-	use App\Models\Menu;
+	use App\Models\{Menu, Langs};
 	use View;
 
 class ManualsController extends AvlController
@@ -45,13 +45,15 @@ class ManualsController extends AvlController
 		$this->authorize('update', $this->accessModel);
 
 		$manual = ($list_id == 0) ? new Manuals : Manuals::find($list_id);
-		$manual->title = $request->title;
+		$manual->title_ru = $request->title_ru;
+		$manual->title_kz = $request->title_kz;
+		$manual->title_en = $request->title_en;
 		$manual->alias = $request->alias;
 		$manual->parent_id = $id;
 
 		if ($manual->save()) {
 			return [
-				'success' => ['Пункт <b>'. $manual->title .'</b> - '. (($list_id == 0) ? 'добавлен' : 'изменен') .'!']
+				'success' => ['Пункт <b>'. $manual->title_ru .'</b> - '. (($list_id == 0) ? 'добавлен' : 'изменен') .'!']
 			];
 		}
 		return ['errors' => ['Произошла ошибка обратитесь к Администратору']];
@@ -82,8 +84,10 @@ class ManualsController extends AvlController
 
 	public function getManuals($manual_id)
 	{
+		$langs = Langs::all()->toArray();
 		return [
-			'elements' => Manuals::select(['id', 'title', 'alias'])->whereParent_id($manual_id)->get()->toArray(),
+			'elements' => Manuals::select(['id', 'title_ru', 'title_kz', 'title_en', 'alias', 'good'])->whereParent_id($manual_id)->get()->toArray(),
+			'langs' => $langs
 		];
 	}
 

@@ -9,6 +9,7 @@ $(document).ready(function () {
 					title_kz: '',
 					title_en: '',
 					title_ru: '',
+					good : ''
 				},
 				elements: [],
 				langs: [],
@@ -120,6 +121,14 @@ $(document).ready(function () {
 					this.createOrUpdate.title_ru = '';
 					this.createOrUpdate.title_en = '';
 					this.createOrUpdate.title_kz = '';
+				},
+
+				confirmDelete: function (index) {
+					if (confirm("Вы действительно желаете удалить?")) {
+						this.deleteManuals(index);
+					} else {
+						return false;
+					}
 				}
 
 			},

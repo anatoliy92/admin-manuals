@@ -6,7 +6,8 @@ $(document).ready(function () {
 			data: {
 				createOrUpdate: {
 					id: 0,
-					title: ''
+					title_ru: '',
+					good: ''
 				},
 				elements: []
 			},
@@ -31,7 +32,7 @@ $(document).ready(function () {
 							dataType: 'json',
 							data : {
 								_token: $('meta[name="_token"]').attr('content'),
-								title: self.createOrUpdate.title,
+								title_ru: self.createOrUpdate.title_ru,
 							},
 							success: function(data) {
 								if (data.errors) {
@@ -39,7 +40,7 @@ $(document).ready(function () {
 								} else {
 									messageSuccess(data.success);
 									self.createOrUpdate.id = 0;
-									self.createOrUpdate.title = '';
+									self.createOrUpdate.title_ru = '';
 									self.getManuals();
 								}
 							}
@@ -86,7 +87,7 @@ $(document).ready(function () {
 				deleteManuals: function (index) {
 					var self = this;
 					var id = self.elements[index].id ;
-					
+
 					$.ajax({
 							url: '/manuals-menu/' + id,
 							type: 'DELETE',
@@ -102,6 +103,14 @@ $(document).ready(function () {
 								}
 							}
 					});
+				},
+
+				confirmDelete: function (index) {
+					if (confirm("Вы действительно желаете удалить?")) {
+						this.deleteManuals(index);
+					} else {
+						return false;
+					}
 				}
 
 			},

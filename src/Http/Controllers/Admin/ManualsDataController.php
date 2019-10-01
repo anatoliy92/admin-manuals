@@ -84,7 +84,7 @@ class ManualsDataController extends AvlController
 	{
 		$langs = Langs::all()->toArray();
 		$parent = Manuals::where('alias', $alias)->first();
-		$manualsData = ManualsData::select(['id', 'title_ru', 'title_kz', 'title_en'])->whereManual_id($parent->id)->get()->toArray();
+		$manualsData = ManualsData::select(['id', 'title_ru', 'title_kz', 'title_en', 'good'])->whereManual_id($parent->id)->get()->toArray();
 
 		return [
 			'elements' => $manualsData,

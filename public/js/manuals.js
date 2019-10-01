@@ -6,10 +6,14 @@ $(document).ready(function () {
 			data: {
 				createOrUpdate: {
 					id: 0,
-					title: '',
-					alias: ''
+					title_ru: '',
+					title_kz: '',
+					title_en: '',
+					alias: '',
+					good: ''
 				},
-				elements: []
+				elements: [],
+				langs: []
 			},
 
 			methods: {
@@ -32,7 +36,9 @@ $(document).ready(function () {
 							dataType: 'json',
 							data : {
 								_token: $('meta[name="_token"]').attr('content'),
-								title: self.createOrUpdate.title,
+								title_ru: self.createOrUpdate.title_ru,
+								title_kz: self.createOrUpdate.title_kz,
+								title_en: self.createOrUpdate.title_en,
 								alias: self.createOrUpdate.alias,
 								manual_id: this.manualId
 							},
@@ -42,7 +48,9 @@ $(document).ready(function () {
 								} else {
 									messageSuccess(data.success);
 									self.createOrUpdate.id = 0;
-									self.createOrUpdate.title = '';
+									self.createOrUpdate.title_ru = '';
+									self.createOrUpdate.title_kz = '';
+									self.createOrUpdate.title_en = '';
 									self.createOrUpdate.alias = '';
 									self.getManuals();
 								}
@@ -79,6 +87,7 @@ $(document).ready(function () {
 									messageError(data.errors);
 								} else {
 									self.elements = data.elements;
+									self.langs = data.langs;
 								}
 							}
 					});
@@ -107,7 +116,16 @@ $(document).ready(function () {
 								}
 							}
 					});
+				},
+
+				confirmDelete: function (index) {
+					if (confirm("Вы действительно желаете удалить?")) {
+						this.deleteManuals(index);
+					} else {
+						return false;
+					}
 				}
+
 
 			},
 

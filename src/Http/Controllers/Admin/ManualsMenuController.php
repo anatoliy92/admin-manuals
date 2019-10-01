@@ -47,13 +47,13 @@ class ManualsMenuController extends AvlController
 	public function update($id = null, Request $request)
 	{
 		$this->authorize('update', $this->accessModel);
-
+		
 		$manual = ($id == 0) ? new Manuals : Manuals::find($id);
-		$manual->title = $request->title;
+		$manual->title_ru = $request->title_ru;
 
 		if ($manual->save()) {
 			return [
-				'success' => ['Пункт <b>'. $manual->title .'</b> - '. (($id == 0) ? 'добавлен' : 'изменен') .'!']
+				'success' => ['Пункт <b>'. $manual->title_ru .'</b> - '. (($id == 0) ? 'добавлен' : 'изменен') .'!']
 			];
 		}
 		return ['errors' => ['Произошла ошибка обратитесь к Администратору']];
@@ -84,7 +84,7 @@ class ManualsMenuController extends AvlController
 	public function getManuals()
 	{
 		return [
-			'elements' => Manuals::select(['id', 'title'])->whereNull('parent_id')->get()->toArray(),
+			'elements' => Manuals::select(['id', 'title_ru', 'good'])->whereNull('parent_id')->get()->toArray(),
 		];
 	}
 }

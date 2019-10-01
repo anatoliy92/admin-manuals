@@ -13,11 +13,13 @@ class AddColLangsManualsTable extends Migration
      */
     public function up()
     {
-			Schema::table('manuals', function (Blueprint $table) {
-				$table->renameColumn('title', 'title_ru');
-				$table->string('title_kz')->nullable()->after('title_ru');
-				$table->string('title_en')->nullable()->after('title_kz');
-			});
+        Schema::table('manuals', function (Blueprint $table) {
+            $table->renameColumn('title', 'title_ru');
+        });
+        Schema::table('manuals', function (Blueprint $table) {
+            $table->string('title_kz')->nullable()->after('title_ru');
+            $table->string('title_en')->nullable()->after('title_kz');
+        });
     }
 
     /**
@@ -27,10 +29,12 @@ class AddColLangsManualsTable extends Migration
      */
     public function down()
     {
-			Schema::table('manuals', function (Blueprint $table) {
-				$table->renameColumn('title_ru', 'title');
-				$table->dropColumn('title_kz');
-				$table->dropColumn('title_en');
-			});
+        Schema::table('manuals', function (Blueprint $table) {
+            $table->renameColumn('title_ru', 'title');
+        });
+        Schema::table('manuals', function (Blueprint $table) {
+            $table->dropColumn('title_kz');
+            $table->dropColumn('title_en');
+        });
     }
 }
